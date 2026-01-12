@@ -24,11 +24,46 @@ export default function DisclaimerModal() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', checkDark);
 
+    // Hide footer when modal is visible
+    const hideFooter = () => {
+      if (typeof document !== 'undefined') {
+        const footers = document.querySelectorAll('footer, [class*="footer"], [class*="Footer"]');
+        footers.forEach(footer => {
+          footer.style.display = 'none';
+          footer.style.visibility = 'hidden';
+          footer.style.opacity = '0';
+          footer.style.pointerEvents = 'none';
+          footer.style.zIndex = '-1';
+        });
+      }
+    };
+
+    // Show footer when modal is dismissed
+    const showFooter = () => {
+      if (typeof document !== 'undefined') {
+        const footers = document.querySelectorAll('footer, [class*="footer"], [class*="Footer"]');
+        footers.forEach(footer => {
+          footer.style.display = '';
+          footer.style.visibility = '';
+          footer.style.opacity = '';
+          footer.style.pointerEvents = '';
+          footer.style.zIndex = '';
+        });
+      }
+    };
+
+    if (show) {
+      hideFooter();
+    }
+
     return () => {
       observer.disconnect();
       mediaQuery.removeEventListener('change', checkDark);
+      if (!show) {
+        showFooter();
+      }
     };
-  }, []);
+  }, [show]);
 
   if (!show) return null;
 
