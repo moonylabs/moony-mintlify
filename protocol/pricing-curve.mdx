@@ -10,6 +10,20 @@ icon: chart-line
 
 <div style={{ textAlign: 'justify' }}>
 
-Content coming soon...
+<p style={{ marginBottom: '1.5rem' }}>
+Moony's price discovery is governed by an onchain bonding curve, a deterministic mathematical function encoded within the Moony Reserve. The pricing curve adjusts the token's spot price based solely on the current absolute supply of MNY in circulation.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+This mechanism applies symmetrically to both unlocking and redemption. When MNY is unlocked from the pre-minted supply, the pricing curve determines the required USDF contribution according to the current circulating supply. When MNY is redeemed, the same curve determines the USDF returned. All participants interact with the same pricing function, enforced uniformly by the contract's immutable logic.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+As circulating supply increases, the bonding curve raises the price in a non-linear fashion. This structure rewards early participation through lower entry costs while requiring later participants to contribute proportionally more liquidity. These price differences arise mechanically from the public state of the system at the time of interaction, not from identity, special access, or discretionary allocation.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+Because the bonding curve operates transparently and permissionlessly, access to MNY is governed by open, predictable rules rather than gatekeeping or administrative control. The pricing curve ensures that growth reflects real demand, reinforces scarcity over time, and aligns economic participation with the long-term integrity of the network.
+</p>
 
 </div>
