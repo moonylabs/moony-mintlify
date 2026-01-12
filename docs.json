@@ -26,15 +26,15 @@
       {
         "group": "API Documentation",
         "pages": [
-          "docs/api-introduction"
+          "docs/api-reference/introduction"
         ]
       },
       {
         "group": "Endpoint Examples",
         "pages": [
-          "docs/endpoints/get-plants",
-          "docs/endpoints/create-plant",
-          "docs/endpoints/delete-plant"
+          "docs/api-reference/get-plants",
+          "docs/api-reference/create-plant",
+          "docs/api-reference/delete-plant"
         ]
       }
     ]
