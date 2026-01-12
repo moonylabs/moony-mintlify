@@ -230,6 +230,48 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         code.style.color = '#475569';
       }
     });
+    
+    // Update button colors for dark mode
+    const buttons = document.querySelectorAll('#mint-address-card button, #authority-address-card button');
+    buttons.forEach(btn => {
+      if (isDark && !btn.style.backgroundColor.includes('10b981')) { // Don't override "Copied!" state
+        btn.style.backgroundColor = '#E7D9FD';
+        btn.style.color = '#502792';
+      } else if (!isDark && !btn.style.backgroundColor.includes('10b981')) {
+        btn.style.backgroundColor = '#502792';
+        btn.style.color = 'white';
+      }
+    });
+    
+    // Update link colors for dark mode
+    const links = document.querySelectorAll('#mint-address-card a[href*="explorer.solana.com"], #authority-address-card a[href*="explorer.solana.com"]');
+    links.forEach(link => {
+      if (isDark) {
+        link.style.color = '#E7D9FD';
+        link.style.borderColor = '#E7D9FD';
+        // Update hover handlers
+        link.onmouseenter = function() {
+          this.style.backgroundColor = '#E7D9FD';
+          this.style.color = '#502792';
+        };
+        link.onmouseleave = function() {
+          this.style.backgroundColor = 'transparent';
+          this.style.color = '#E7D9FD';
+        };
+      } else {
+        link.style.color = '#502792';
+        link.style.borderColor = '#502792';
+        // Update hover handlers
+        link.onmouseenter = function() {
+          this.style.backgroundColor = '#502792';
+          this.style.color = 'white';
+        };
+        link.onmouseleave = function() {
+          this.style.backgroundColor = 'transparent';
+          this.style.color = '#502792';
+        };
+      }
+    });
   }
   
   // Initial update

@@ -111,3 +111,31 @@ body:has([style*="z-index: 99999"]) footer {
   border-color: #3f3f46 !important;
   color: #d4d4d8 !important;
 }
+
+/* Address card buttons and links - dark mode brand color */
+.dark #mint-address-card button,
+.dark #authority-address-card button,
+.dark .address-card button {
+  background-color: #E7D9FD !important;
+  color: #502792 !important;
+}
+
+.dark #mint-address-card button:hover,
+.dark #authority-address-card button:hover,
+.dark .address-card button:hover {
+  background-color: #d4b8fa !important;
+}
+
+.dark #mint-address-card a[href*="explorer.solana.com"],
+.dark #authority-address-card a[href*="explorer.solana.com"],
+.dark .address-card a[href*="explorer.solana.com"] {
+  color: #E7D9FD !important;
+  border-color: #E7D9FD !important;
+}
+
+.dark #mint-address-card a[href*="explorer.solana.com"]:hover,
+.dark #authority-address-card a[href*="explorer.solana.com"]:hover,
+.dark .address-card a[href*="explorer.solana.com"]:hover {
+  background-color: #E7D9FD !important;
+  color: #502792 !important;
+}
