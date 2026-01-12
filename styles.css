@@ -176,6 +176,17 @@ body:has([style*="z-index: 99999"]) footer {
   color: #d4d4d8 !important;
 }
 
+/* Brand link styling for light/dark mode */
+.brand-link {
+  color: #502792;
+  text-decoration: underline;
+}
+
+.dark .brand-link {
+  color: #E7D9FD;
+  text-decoration: underline;
+}
+
 /* Copy button animations */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
