@@ -2,12 +2,17 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Moony Labs",
   "theme": "aspen",
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "docs/introduction"
-      ]
-    }
-  ]
+  "colors": {
+    "primary": "#0D9373"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "docs/introduction"
+        ]
+      }
+    ]
+  }
 }
