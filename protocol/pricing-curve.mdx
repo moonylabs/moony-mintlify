@@ -133,3 +133,21 @@ Because the bonding curve operates transparently and permissionlessly, access to
   </div>
 
 </div>
+
+## Model Parameters
+
+<div style={{ textAlign: 'justify' }}>
+
+<p style={{ marginBottom: '1.5rem' }}>
+The bonding curve implemented in the Moony Reserve uses a discrete bonding curve implementation, where pricing values are sampled from an underlying exponential function at fixed supply intervals. This approach enables efficient on-chain computation through precomputed lookup tables.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+The underlying mathematical model defines the spot price (the instantaneous price per MNY token) at any given level of circulating supply using an exponential function. Rather than computing this exponential function and its integrals on-chain for each transaction, the protocol uses precomputed lookup tables that contain discrete values sampled from this mathematical curve at fixed supply intervals. These tables enable fast, gas-efficient pricing calculations while maintaining the exact same curve shape and pricing behavior defined by the mathematical formulas below.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+When a participant unlocks or redeems MNY, the Moony Reserve determines pricing by looking up values from these precomputed tables, which are derived from integrating the spot price function over the relevant supply intervals. This discrete implementation ensures that pricing reflects the exact position and size of each transaction along the pricing curve while minimizing on-chain computation costs.
+</p>
+
+</div>
