@@ -48,6 +48,100 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
     <button
       id="copy-mint-btn"
       data-address="52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const btn = e.currentTarget;
+        const textSpan = btn.querySelector('span');
+        const address = btn.getAttribute('data-address');
+        const svg = btn.querySelector('svg');
+        const codeElement = btn.closest('div').querySelector('code');
+        
+        if (btn.dataset.copying === 'true') return;
+        btn.dataset.copying = 'true';
+        
+        const copyText = async () => {
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(address);
+            } else {
+              const textArea = document.createElement('textarea');
+              textArea.value = address;
+              textArea.style.position = 'fixed';
+              textArea.style.left = '-999999px';
+              textArea.style.top = '-999999px';
+              textArea.style.opacity = '0';
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textArea);
+            }
+            
+            const originalText = textSpan.textContent;
+            const originalBg = btn.style.backgroundColor;
+            const originalColor = btn.style.color;
+            const originalSvg = svg.innerHTML;
+            
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => { btn.style.transform = 'scale(1)'; }, 100);
+            
+            textSpan.textContent = 'Copied!';
+            btn.style.backgroundColor = '#10b981';
+            btn.style.color = 'white';
+            btn.style.cursor = 'default';
+            
+            svg.style.transform = 'scale(0.8)';
+            svg.style.transition = 'transform 0.3s ease';
+            svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>';
+            setTimeout(() => { svg.style.transform = 'scale(1)'; }, 50);
+            
+            if (codeElement) {
+              const originalCodeBg = codeElement.style.backgroundColor;
+              codeElement.style.transition = 'background-color 0.4s ease, transform 0.2s ease';
+              codeElement.style.backgroundColor = '#dcfce7';
+              codeElement.style.transform = 'scale(1.02)';
+              setTimeout(() => { codeElement.style.transform = 'scale(1)'; }, 200);
+              setTimeout(() => {
+                codeElement.style.backgroundColor = originalCodeBg;
+              }, 1200);
+            }
+            
+            setTimeout(() => {
+              btn.style.transform = 'scale(0.98)';
+              setTimeout(() => {
+                textSpan.textContent = originalText;
+                btn.style.backgroundColor = originalBg;
+                btn.style.color = originalColor;
+                btn.style.cursor = 'pointer';
+                btn.style.transform = 'scale(1)';
+                svg.innerHTML = originalSvg;
+                svg.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                  svg.style.transform = 'scale(1)';
+                  btn.dataset.copying = 'false';
+                }, 150);
+              }, 100);
+            }, 2000);
+          } catch (err) {
+            console.error('Copy failed:', err);
+            const originalText = textSpan.textContent;
+            btn.style.animation = 'shake 0.5s ease';
+            textSpan.textContent = 'Failed';
+            btn.style.backgroundColor = '#ef4444';
+            btn.style.color = 'white';
+            setTimeout(() => {
+              btn.style.animation = '';
+              textSpan.textContent = originalText;
+              btn.style.backgroundColor = '#502792';
+              btn.style.color = 'white';
+              btn.dataset.copying = 'false';
+            }, 2000);
+          }
+        };
+        
+        copyText();
+      }}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -60,7 +154,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         fontSize: '0.875rem',
         fontWeight: 500,
         cursor: 'pointer',
-        transition: 'background-color 0.2s ease',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         whiteSpace: 'nowrap'
       }}
     >
@@ -68,7 +162,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
       </svg>
-      <span id="copy-mint-text">Copy</span>
+      <span>Copy</span>
     </button>
     <a
       href="https://explorer.solana.com/address/52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj"
@@ -133,6 +227,100 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
     <button
       id="copy-authority-btn"
       data-address="jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const btn = e.currentTarget;
+        const textSpan = btn.querySelector('span');
+        const address = btn.getAttribute('data-address');
+        const svg = btn.querySelector('svg');
+        const codeElement = btn.closest('div').querySelector('code');
+        
+        if (btn.dataset.copying === 'true') return;
+        btn.dataset.copying = 'true';
+        
+        const copyText = async () => {
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(address);
+            } else {
+              const textArea = document.createElement('textarea');
+              textArea.value = address;
+              textArea.style.position = 'fixed';
+              textArea.style.left = '-999999px';
+              textArea.style.top = '-999999px';
+              textArea.style.opacity = '0';
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textArea);
+            }
+            
+            const originalText = textSpan.textContent;
+            const originalBg = btn.style.backgroundColor;
+            const originalColor = btn.style.color;
+            const originalSvg = svg.innerHTML;
+            
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => { btn.style.transform = 'scale(1)'; }, 100);
+            
+            textSpan.textContent = 'Copied!';
+            btn.style.backgroundColor = '#10b981';
+            btn.style.color = 'white';
+            btn.style.cursor = 'default';
+            
+            svg.style.transform = 'scale(0.8)';
+            svg.style.transition = 'transform 0.3s ease';
+            svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>';
+            setTimeout(() => { svg.style.transform = 'scale(1)'; }, 50);
+            
+            if (codeElement) {
+              const originalCodeBg = codeElement.style.backgroundColor;
+              codeElement.style.transition = 'background-color 0.4s ease, transform 0.2s ease';
+              codeElement.style.backgroundColor = '#dcfce7';
+              codeElement.style.transform = 'scale(1.02)';
+              setTimeout(() => { codeElement.style.transform = 'scale(1)'; }, 200);
+              setTimeout(() => {
+                codeElement.style.backgroundColor = originalCodeBg;
+              }, 1200);
+            }
+            
+            setTimeout(() => {
+              btn.style.transform = 'scale(0.98)';
+              setTimeout(() => {
+                textSpan.textContent = originalText;
+                btn.style.backgroundColor = originalBg;
+                btn.style.color = originalColor;
+                btn.style.cursor = 'pointer';
+                btn.style.transform = 'scale(1)';
+                svg.innerHTML = originalSvg;
+                svg.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                  svg.style.transform = 'scale(1)';
+                  btn.dataset.copying = 'false';
+                }, 150);
+              }, 100);
+            }, 2000);
+          } catch (err) {
+            console.error('Copy failed:', err);
+            const originalText = textSpan.textContent;
+            btn.style.animation = 'shake 0.5s ease';
+            textSpan.textContent = 'Failed';
+            btn.style.backgroundColor = '#ef4444';
+            btn.style.color = 'white';
+            setTimeout(() => {
+              btn.style.animation = '';
+              textSpan.textContent = originalText;
+              btn.style.backgroundColor = '#502792';
+              btn.style.color = 'white';
+              btn.dataset.copying = 'false';
+            }, 2000);
+          }
+        };
+        
+        copyText();
+      }}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -145,7 +333,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         fontSize: '0.875rem',
         fontWeight: 500,
         cursor: 'pointer',
-        transition: 'background-color 0.2s ease',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         whiteSpace: 'nowrap'
       }}
     >
@@ -153,7 +341,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
       </svg>
-      <span id="copy-authority-text">Copy</span>
+      <span>Copy</span>
     </button>
     <a
       href="https://explorer.solana.com/address/jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV"
