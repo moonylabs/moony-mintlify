@@ -10,7 +10,14 @@
       {
         "group": "Get Started",
         "pages": [
-          "docs/introduction"
+          "docs/introduction",
+          "docs/quickstart"
+        ]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "docs/guides"
         ]
       }
     ]
