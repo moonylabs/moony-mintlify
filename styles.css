@@ -177,14 +177,20 @@ body:has([style*="z-index: 99999"]) footer {
 }
 
 /* Brand link styling for light/dark mode */
-.brand-link {
-  color: #502792;
-  text-decoration: underline;
+.brand-link,
+[class*="Info"] a.brand-link,
+[class*="info"] a.brand-link {
+  color: #502792 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #502792;
 }
 
-.dark .brand-link {
-  color: #E7D9FD;
-  text-decoration: underline;
+.dark .brand-link,
+.dark [class*="Info"] a.brand-link,
+.dark [class*="info"] a.brand-link {
+  color: #E7D9FD !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #E7D9FD;
 }
 
 /* Copy button animations */
