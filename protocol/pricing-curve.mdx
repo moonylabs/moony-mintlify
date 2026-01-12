@@ -151,3 +151,54 @@ When a participant unlocks or redeems MNY, the Moony Reserve determines pricing 
 </p>
 
 </div>
+
+<div className="principle-card" style={{
+  border: '1px solid #e5e7eb',
+  borderRadius: '0.75rem',
+  padding: '1.5rem',
+  marginBottom: '1.5rem',
+  backgroundColor: '#ffffff',
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+}}>
+  <div style={{
+    backgroundColor: '#E7D9FD',
+    borderRadius: '0.5rem',
+    padding: '1rem',
+    marginBottom: '1rem',
+    border: '1px solid #D8C5FD'
+  }}>
+    <code style={{
+      fontSize: '1.125rem',
+      fontFamily: 'monospace',
+      color: '#502792',
+      fontWeight: 600,
+      display: 'block',
+      textAlign: 'center'
+    }}>
+      R'(S) = a × b × e^(c × S)
+    </code>
+  </div>
+  <div style={{
+    fontSize: '0.9375rem',
+    lineHeight: '1.6',
+    color: '#475569'
+  }}>
+    <p style={{ marginBottom: '0.75rem', marginTop: 0 }}>
+      The spot price is the price per token at a specific supply level. This formula gives you the instantaneous price at supply S:
+    </p>
+    <div style={{ marginTop: '0.75rem' }}>
+      <strong style={{ color: '#1e293b' }}>Where:</strong>
+      <ul style={{ marginTop: '0.5rem', marginBottom: 0, paddingLeft: '1.5rem' }}>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ color: '#502792', backgroundColor: 'transparent', padding: 0 }}>R'(S)</code> is the spot price (price per token) at supply S
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ color: '#502792', backgroundColor: 'transparent', padding: 0 }}>S</code> is the current circulating supply (absolute number of tokens)
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ color: '#502792', backgroundColor: 'transparent', padding: 0 }}>a, b, and c</code> are curve constants that define the exponential shape
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
