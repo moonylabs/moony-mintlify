@@ -161,6 +161,20 @@ body:has([style*="z-index: 99999"]) footer {
   color: #502792 !important;
 }
 
+/* Core Principles boxes dark mode */
+.dark [style*="backgroundColor: #F9F7FF"] {
+  background-color: #18181b !important;
+  border-color: #27272a !important;
+}
+
+.dark [style*="color: #502792"]:not([style*="color: #502792"][style*="color: #1e293b"]) {
+  color: #E7D9FD !important;
+}
+
+.dark [style*="color: #1e293b"] {
+  color: #fafafa !important;
+}
+
 /* Copy button animations */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
