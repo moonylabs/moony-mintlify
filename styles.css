@@ -165,23 +165,6 @@ body:has([style*="z-index: 99999"]) footer {
   transform: scale(0.95);
 }
 
-/* Page header icons */
-h1[data-icon] {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-h1[data-icon]::before {
-  content: '';
-  display: inline-flex;
-  width: 1.5em;
-  height: 1.5em;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  flex-shrink: 0;
-}
 
 /* Icon styles for different icon names */
 h1[data-icon="coins"]::before {
