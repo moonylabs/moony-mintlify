@@ -1,7 +1,8 @@
 /* Custom hover styles for navigation menu items */
-/* Use the light color (#E7D9FD) for hover in both light and dark modes */
+/* Light mode: use primary color (#502792) on hover */
+/* Dark mode: use light color (#E7D9FD) on hover */
 
-/* Navigation sidebar items hover - targeting Mintlify's navigation structure */
+/* Navigation sidebar items hover - Light mode (default) */
 aside a:hover,
 aside nav a:hover,
 [class*="sidebar"] a:hover,
@@ -13,23 +14,54 @@ aside nav a:hover,
 [class*="nav-item"]:hover,
 [class*="nav-item"]:hover a,
 nav[class*="nav"] a:hover {
-  color: #E7D9FD !important;
+  color: #502792 !important;
   transition: color 0.2s ease;
 }
 
-/* Target navigation items with icons */
+/* Target navigation items with icons - Light mode */
 aside a:hover svg,
 aside nav a:hover svg,
 [class*="NavItem"]:hover svg,
 [class*="nav-item"]:hover svg {
+  color: #502792 !important;
+  transition: color 0.2s ease;
+}
+
+/* More generic fallback for any navigation links - Light mode */
+nav a:hover,
+[role="navigation"] a:hover,
+[aria-label*="navigation" i] a:hover {
+  color: #502792 !important;
+  transition: color 0.2s ease;
+}
+
+/* Dark mode hover styles - use light color */
+.dark aside a:hover,
+.dark aside nav a:hover,
+.dark [class*="sidebar"] a:hover,
+.dark [class*="Sidebar"] a:hover,
+.dark [class*="Navigation"] a:hover,
+.dark [class*="NavItem"]:hover,
+.dark [class*="NavItem"]:hover a,
+.dark [class*="NavItem"]:hover span,
+.dark [class*="nav-item"]:hover,
+.dark [class*="nav-item"]:hover a,
+.dark nav[class*="nav"] a:hover {
   color: #E7D9FD !important;
   transition: color 0.2s ease;
 }
 
-/* More generic fallback for any navigation links */
-nav a:hover,
-[role="navigation"] a:hover,
-[aria-label*="navigation" i] a:hover {
+.dark aside a:hover svg,
+.dark aside nav a:hover svg,
+.dark [class*="NavItem"]:hover svg,
+.dark [class*="nav-item"]:hover svg {
+  color: #E7D9FD !important;
+  transition: color 0.2s ease;
+}
+
+.dark nav a:hover,
+.dark [role="navigation"] a:hover,
+.dark [aria-label*="navigation" i] a:hover {
   color: #E7D9FD !important;
   transition: color 0.2s ease;
 }
