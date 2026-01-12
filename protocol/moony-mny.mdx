@@ -287,6 +287,113 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addEventListener('change', updateDarkMode);
   
+  function fallbackCopyToClipboard(text) {
+    // Create a temporary textarea element
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return successful;
+    } catch (err) {
+      document.body.removeChild(textArea);
+      return false;
+    }
+  }
+  
+  function showSuccessState(btn, textSpan, svg, codeElement) {
+    // Store original state
+    const originalText = textSpan.textContent;
+    const originalBg = btn.style.backgroundColor;
+    const originalColor = btn.style.color;
+    const svg = btn.querySelector('svg');
+    const originalSvg = svg.innerHTML;
+    
+    // Add click animation - scale down then up
+    btn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      btn.style.transform = 'scale(1)';
+    }, 100);
+    
+    // Update to success state with smooth transition
+    textSpan.textContent = 'Copied!';
+    btn.style.backgroundColor = '#10b981';
+    btn.style.color = 'white';
+    btn.style.cursor = 'default';
+    
+    // Animate icon change - rotate and scale
+    svg.style.transform = 'rotate(0deg) scale(0.8)';
+    svg.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>';
+    
+    setTimeout(() => {
+      svg.style.transform = 'rotate(0deg) scale(1)';
+    }, 50);
+    
+    // Also highlight the address code element briefly with pulse effect
+    if (codeElement) {
+      const originalCodeBg = codeElement.style.backgroundColor;
+      const originalCodeTransition = codeElement.style.transition;
+      codeElement.style.transition = 'background-color 0.4s ease, transform 0.2s ease';
+      codeElement.style.backgroundColor = '#dcfce7';
+      codeElement.style.transform = 'scale(1.02)';
+      
+      setTimeout(() => {
+        codeElement.style.transform = 'scale(1)';
+      }, 200);
+      
+      setTimeout(() => {
+        codeElement.style.backgroundColor = originalCodeBg;
+        codeElement.style.transition = originalCodeTransition;
+      }, 1200);
+    }
+    
+    // Revert after 2 seconds with smooth animation
+    setTimeout(() => {
+      btn.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        textSpan.textContent = originalText;
+        btn.style.backgroundColor = originalBg;
+        btn.style.color = originalColor;
+        btn.style.cursor = 'pointer';
+        btn.style.transform = 'scale(1)';
+        svg.innerHTML = originalSvg;
+        svg.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+          svg.style.transform = 'scale(1)';
+          btn.dataset.copying = 'false';
+        }, 150);
+      }, 100);
+    }, 2000);
+  }
+  
+  function showErrorState(btn, textSpan) {
+    const originalText = textSpan.textContent;
+    const originalBg = btn.style.backgroundColor;
+    const originalColor = btn.style.color;
+    
+    btn.style.animation = 'shake 0.5s ease';
+    textSpan.textContent = 'Failed';
+    btn.style.backgroundColor = '#ef4444';
+    btn.style.color = 'white';
+    
+    setTimeout(() => {
+      btn.style.animation = '';
+      textSpan.textContent = originalText;
+      btn.style.backgroundColor = originalBg;
+      btn.style.color = originalColor;
+      btn.dataset.copying = 'false';
+    }, 2000);
+  }
+  
   function setupCopyButton(buttonId, textId, address) {
     const btn = document.getElementById(buttonId);
     const textSpan = document.getElementById(textId);
@@ -303,92 +410,28 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
       if (btn.dataset.copying === 'true') return;
       btn.dataset.copying = 'true';
       
-      try {
-        await navigator.clipboard.writeText(address);
-        
-        // Store original state
-        const originalText = textSpan.textContent;
-        const originalBg = btn.style.backgroundColor;
-        const originalColor = btn.style.color;
-        const svg = btn.querySelector('svg');
-        const originalSvg = svg.innerHTML;
-        
-        // Add click animation - scale down then up
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          btn.style.transform = 'scale(1)';
-        }, 100);
-        
-        // Update to success state with smooth transition
-        textSpan.textContent = 'Copied!';
-        btn.style.backgroundColor = '#10b981';
-        btn.style.color = 'white';
-        btn.style.cursor = 'default';
-        
-        // Animate icon change - rotate and scale
-        svg.style.transform = 'rotate(0deg) scale(0.8)';
-        svg.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>';
-        
-        setTimeout(() => {
-          svg.style.transform = 'rotate(0deg) scale(1)';
-        }, 50);
-        
-        // Also highlight the address code element briefly with pulse effect
-        const codeElement = btn.closest('div').querySelector('code');
-        if (codeElement) {
-          const originalCodeBg = codeElement.style.backgroundColor;
-          const originalCodeTransition = codeElement.style.transition;
-          codeElement.style.transition = 'background-color 0.4s ease, transform 0.2s ease';
-          codeElement.style.backgroundColor = '#dcfce7';
-          codeElement.style.transform = 'scale(1.02)';
-          
-          setTimeout(() => {
-            codeElement.style.transform = 'scale(1)';
-          }, 200);
-          
-          setTimeout(() => {
-            codeElement.style.backgroundColor = originalCodeBg;
-            codeElement.style.transition = originalCodeTransition;
-          }, 1200);
+      const svg = btn.querySelector('svg');
+      const codeElement = btn.closest('div').querySelector('code');
+      
+      // Try modern clipboard API first
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(address);
+          showSuccessState(btn, textSpan, svg, codeElement);
+          return;
+        } catch (err) {
+          console.warn('Clipboard API failed, trying fallback:', err);
+          // Fall through to fallback
         }
-        
-        // Revert after 2 seconds with smooth animation
-        setTimeout(() => {
-          btn.style.transform = 'scale(0.98)';
-          setTimeout(() => {
-            textSpan.textContent = originalText;
-            btn.style.backgroundColor = originalBg;
-            btn.style.color = originalColor;
-            btn.style.cursor = 'pointer';
-            btn.style.transform = 'scale(1)';
-            svg.innerHTML = originalSvg;
-            svg.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-              svg.style.transform = 'scale(1)';
-              btn.dataset.copying = 'false';
-            }, 150);
-          }, 100);
-        }, 2000);
-      } catch (err) {
-        console.error('Failed to copy:', err);
-        // Show error feedback with shake animation
-        const originalText = textSpan.textContent;
-        const originalBg = btn.style.backgroundColor;
-        const originalColor = btn.style.color;
-        
-        btn.style.animation = 'shake 0.5s ease';
-        textSpan.textContent = 'Failed';
-        btn.style.backgroundColor = '#ef4444';
-        btn.style.color = 'white';
-        
-        setTimeout(() => {
-          btn.style.animation = '';
-          textSpan.textContent = originalText;
-          btn.style.backgroundColor = originalBg;
-          btn.style.color = originalColor;
-          btn.dataset.copying = 'false';
-        }, 2000);
+      }
+      
+      // Fallback to older method
+      const success = fallbackCopyToClipboard(address);
+      if (success) {
+        showSuccessState(btn, textSpan, svg, codeElement);
+      } else {
+        console.error('All copy methods failed');
+        showErrorState(btn, textSpan);
       }
     });
   }
