@@ -30,8 +30,6 @@ export default function DisclaimerModal() {
     };
   }, []);
 
-  if (!show) return null;
-
   const bg = isDark ? '#1e293b' : 'white';
   const text = isDark ? '#e2e8f0' : '#1e293b';
   const textSec = isDark ? '#cbd5e1' : '#475569';
@@ -50,7 +48,7 @@ export default function DisclaimerModal() {
         bottom: 0,
         zIndex: 99999,
         backgroundColor: overlay,
-        display: 'flex',
+        display: show ? 'flex' : 'none',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1rem'
