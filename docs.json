@@ -6,7 +6,7 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction"
+        "docs/introduction"
       ]
     }
   ]
