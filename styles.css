@@ -67,11 +67,21 @@ nav a:hover,
 }
 
 /* Hide footer when disclaimer modal is visible */
-body:has([style*="z-index: 999999"]) footer,
-body:has([style*="z-index: 999999"]) [class*="footer"],
-body:has([style*="z-index: 999999"]) [class*="Footer"] {
+body:has(.moony-disclaimer-modal-overlay) footer,
+body:has(.moony-disclaimer-modal-overlay) [class*="footer"],
+body:has(.moony-disclaimer-modal-overlay) [class*="Footer"],
+.moony-disclaimer-modal-overlay ~ footer,
+.moony-disclaimer-modal-overlay ~ [class*="footer"],
+.moony-disclaimer-modal-overlay ~ [class*="Footer"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+/* Ensure modal overlay is above everything */
+.moony-disclaimer-modal-overlay {
+  z-index: 999999 !important;
+  position: fixed !important;
 }
