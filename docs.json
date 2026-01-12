@@ -3,9 +3,9 @@
   "theme": "maple",
   "name": "Maple Starter Kit",
   "colors": {
-    "primary": "#9A3412",
-    "light": "#EA580C",
-    "dark": "#9A3412"
+    "primary": "#D8C5FD",
+    "light": "#FFF2D9",
+    "dark": "#A875FB"
   },
   "favicon": "/favicon.svg",
   "logo": {
@@ -55,7 +55,7 @@
           "href": "https://mintlify.com/docs",
           "icon": "book-open-cover"
         },
-        {
+      {
           "anchor": "Blog",
           "href": "https://mintlify.com/blog",
           "icon": "newspaper"
