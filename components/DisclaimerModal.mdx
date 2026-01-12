@@ -24,46 +24,11 @@ export default function DisclaimerModal() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', checkDark);
 
-    // Hide footer when modal is visible
-    const hideFooter = () => {
-      if (typeof document !== 'undefined') {
-        const footers = document.querySelectorAll('footer, [class*="footer"], [class*="Footer"]');
-        footers.forEach(footer => {
-          footer.style.display = 'none';
-          footer.style.visibility = 'hidden';
-          footer.style.opacity = '0';
-          footer.style.pointerEvents = 'none';
-          footer.style.zIndex = '-1';
-        });
-      }
-    };
-
-    // Show footer when modal is dismissed
-    const showFooter = () => {
-      if (typeof document !== 'undefined') {
-        const footers = document.querySelectorAll('footer, [class*="footer"], [class*="Footer"]');
-        footers.forEach(footer => {
-          footer.style.display = '';
-          footer.style.visibility = '';
-          footer.style.opacity = '';
-          footer.style.pointerEvents = '';
-          footer.style.zIndex = '';
-        });
-      }
-    };
-
-    if (show) {
-      hideFooter();
-    }
-
     return () => {
       observer.disconnect();
       mediaQuery.removeEventListener('change', checkDark);
-      if (!show) {
-        showFooter();
-      }
     };
-  }, [show]);
+  }, []);
 
   if (!show) return null;
 
@@ -77,20 +42,18 @@ export default function DisclaimerModal() {
 
   return (
     <div
-      className="moony-disclaimer-modal-overlay"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        zIndex: 999999,
+        zIndex: 99999,
         backgroundColor: overlay,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem',
-        isolation: 'isolate'
+        padding: '1rem'
       }}
     >
       <div
@@ -104,7 +67,7 @@ export default function DisclaimerModal() {
           overflowY: 'auto',
           boxShadow: shadow,
           position: 'relative',
-          zIndex: 999999
+          zIndex: 100000
         }}
       >
         <h2 style={{ marginTop: 0, marginBottom: '1.5rem', color: text, fontSize: '1.5rem', fontWeight: 600, textAlign: 'justify' }}>
