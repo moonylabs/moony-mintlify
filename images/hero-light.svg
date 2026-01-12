@@ -1,4 +1,10 @@
 <svg width="1872" height="1104" viewBox="0 0 1919 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<defs>
+<clipPath id="roundedCorners">
+<rect width="1872" height="1104" rx="12" ry="12"/>
+</clipPath>
+</defs>
+<g clip-path="url(#roundedCorners)">
 <rect width="276" height="1080" fill="url(#paint0_linear_351_2870)"/>
 <rect width="273" height="1080" transform="translate(276)" fill="url(#paint1_linear_351_2870)"/>
 <rect width="273" height="1080" transform="translate(549)" fill="url(#paint2_linear_351_2870)"/>
