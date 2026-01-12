@@ -17,37 +17,101 @@
       {
         "group": "Get Started",
         "pages": [
-          "welcome",
-          "quickstart",
-          "development"
+          {
+            "title": "Welcome",
+            "icon": "house",
+            "page": "welcome"
+          },
+          {
+            "title": "Quickstart",
+            "icon": "rocket",
+            "page": "quickstart"
+          },
+          {
+            "title": "Development",
+            "icon": "code",
+            "page": "development"
+          }
         ]
       },
       {
         "group": "Moony Protocol",
         "pages": [
-          "protocol/overview",
-          "protocol/moony-mny",
-          "protocol/moony-reserve",
-          "protocol/proof-of-capital",
-          "protocol/pricing-curve"
+          {
+            "title": "Overview",
+            "icon": "book-open",
+            "page": "protocol/overview"
+          },
+          {
+            "title": "Moony (MNY)",
+            "icon": "coins",
+            "page": "protocol/moony-mny"
+          },
+          {
+            "title": "Moony Reserve",
+            "icon": "vault",
+            "page": "protocol/moony-reserve"
+          },
+          {
+            "title": "Proof of Capital",
+            "icon": "shield-check",
+            "page": "protocol/proof-of-capital"
+          },
+          {
+            "title": "Pricing Curve",
+            "icon": "chart-line",
+            "page": "protocol/pricing-curve"
+          }
         ]
       },
       {
         "group": "Moony Economy",
         "pages": [
-          "economy/overview",
-          "economy/p2p-payments",
-          "economy/micropayments",
-          "economy/capital-markets"
+          {
+            "title": "Overview",
+            "icon": "book-open",
+            "page": "economy/overview"
+          },
+          {
+            "title": "P2P Payments",
+            "icon": "money-bill-transfer",
+            "page": "economy/p2p-payments"
+          },
+          {
+            "title": "Micropayments",
+            "icon": "wallet",
+            "page": "economy/micropayments"
+          },
+          {
+            "title": "Capital Markets",
+            "icon": "chart-bar",
+            "page": "economy/capital-markets"
+          }
         ]
       },
       {
         "group": "Moony Network",
         "pages": [
-          "network/overview",
-          "network/stakeholders",
-          "network/participation",
-          "network/resources"
+          {
+            "title": "Overview",
+            "icon": "book-open",
+            "page": "network/overview"
+          },
+          {
+            "title": "Stakeholders",
+            "icon": "users",
+            "page": "network/stakeholders"
+          },
+          {
+            "title": "Participation",
+            "icon": "user-plus",
+            "page": "network/participation"
+          },
+          {
+            "title": "Resources",
+            "icon": "book",
+            "page": "network/resources"
+          }
         ]
       }
     ],
