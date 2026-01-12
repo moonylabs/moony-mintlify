@@ -190,14 +190,23 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
     const isDark = document.documentElement.classList.contains('dark') || 
                    window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    const cards = document.querySelectorAll('.address-card');
-    const labels = document.querySelectorAll('.address-label');
-    const codes = document.querySelectorAll('.address-code');
+    // Try to get the navigation bar's background color to match it
+    const navBar = document.querySelector('aside, [class*="sidebar"], [class*="Sidebar"], nav[class*="nav"]');
+    let navBg = null;
+    if (navBar && isDark) {
+      const computedStyle = window.getComputedStyle(navBar);
+      navBg = computedStyle.backgroundColor;
+    }
+    
+    const cards = document.querySelectorAll('.address-card, #mint-address-card, #authority-address-card');
+    const labels = document.querySelectorAll('.address-label, #mint-address-card h4, #authority-address-card h4');
+    const codes = document.querySelectorAll('.address-code, #mint-address-card code, #authority-address-card code');
     
     cards.forEach(card => {
       if (isDark) {
-        card.style.backgroundColor = '#1e293b';
-        card.style.borderColor = '#334155';
+        // Use navigation bar color if found, otherwise use default dark color
+        card.style.backgroundColor = navBg || '#18181b';
+        card.style.borderColor = '#27272a';
         card.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.3)';
       } else {
         card.style.backgroundColor = '#ffffff';
@@ -207,14 +216,14 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
     });
     
     labels.forEach(label => {
-      label.style.color = isDark ? '#e2e8f0' : '#1e293b';
+      label.style.color = isDark ? '#fafafa' : '#1e293b';
     });
     
     codes.forEach(code => {
       if (isDark) {
-        code.style.backgroundColor = '#0f172a';
-        code.style.borderColor = '#1e293b';
-        code.style.color = '#cbd5e1';
+        code.style.backgroundColor = '#27272a';
+        code.style.borderColor = '#3f3f46';
+        code.style.color = '#d4d4d8';
       } else {
         code.style.backgroundColor = '#f8fafc';
         code.style.borderColor = '#e2e8f0';
