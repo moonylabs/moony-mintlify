@@ -1,42 +1,46 @@
 ---
 title: Quickstart
-description: Get up and running in 5 minutes
+description: Start building awesome documentation in under 5 minutes
 ---
 
-## Quickstart Guide
+## Quickstart
 
-Get started with Moony Labs in just a few steps.
+Get up and running with your documentation in just a few steps.
 
 <Steps>
   <Step title="Install dependencies">
-    Install the required packages:
+    Install the Mintlify CLI:
 
     ```bash
-    npm install
+    npm i -g mintlify
     ```
 
     <Check>
-    Your dependencies are installed successfully!
+    CLI installed successfully!
     </Check>
   </Step>
 
-  <Step title="Configure your project">
-    Set up your configuration file with your credentials.
+  <Step title="Initialize your docs">
+    Run the initialization command:
+
+    ```bash
+    mintlify init
+    ```
 
     <Warning>
-    Make sure to keep your credentials secure.
+    Make sure you're in the directory where you want your docs.
     </Warning>
   </Step>
 
-  <Step title="Run your first command">
-    Execute the following command:
+  <Step title="Start developing">
+    Start the development server:
 
     ```bash
-    npm start
+    mintlify dev
     ```
 
     <Check>
-    If you see the welcome message, you're all set!
+    Your docs are now running at localhost:3000!
     </Check>
   </Step>
 </Steps>
