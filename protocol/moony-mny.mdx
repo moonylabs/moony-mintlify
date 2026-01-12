@@ -584,42 +584,108 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
   
   function setupCopyButton(buttonId, textId, address) {
     const btn = document.getElementById(buttonId);
-    const textSpan = document.getElementById(textId);
-    if (!btn || !textSpan) return;
+    if (!btn) return;
+    
+    // Find the text span (it might not have an ID anymore)
+    const textSpan = document.getElementById(textId) || btn.querySelector('span');
+    if (!textSpan) return;
     
     // Add smooth transitions for all button properties
     btn.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
     
-    btn.addEventListener('click', async function(e) {
+    // Remove any existing onClick handler by cloning the button
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+    
+    newBtn.addEventListener('click', async function(e) {
       e.preventDefault();
       e.stopPropagation();
       
       // Prevent multiple rapid clicks
-      if (btn.dataset.copying === 'true') return;
-      btn.dataset.copying = 'true';
+      if (newBtn.dataset.copying === 'true') return;
+      newBtn.dataset.copying = 'true';
       
-      const svg = btn.querySelector('svg');
-      const codeElement = btn.closest('div').querySelector('code');
+      const textSpan = newBtn.querySelector('span');
+      const address = newBtn.getAttribute('data-address');
+      const svg = newBtn.querySelector('svg');
+      const codeElement = newBtn.closest('div').querySelector('code');
       
-      // Try modern clipboard API first
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        try {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(address);
-          showSuccessState(btn, textSpan, codeElement);
-          return;
-        } catch (err) {
-          console.warn('Clipboard API failed, trying fallback:', err);
-          // Fall through to fallback
+        } else {
+          const textArea = document.createElement('textarea');
+          textArea.value = address;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-999999px';
+          textArea.style.top = '-999999px';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
         }
-      }
-      
-      // Fallback to older method
-      const success = fallbackCopyToClipboard(address);
-      if (success) {
-        showSuccessState(btn, textSpan, codeElement);
-      } else {
-        console.error('All copy methods failed');
-        showErrorState(btn, textSpan);
+        
+        const originalText = textSpan.textContent;
+        const originalBg = newBtn.style.backgroundColor;
+        const originalColor = newBtn.style.color;
+        const originalSvg = svg.innerHTML;
+        
+        newBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => { newBtn.style.transform = 'scale(1)'; }, 100);
+        
+        textSpan.textContent = 'Copied!';
+        newBtn.style.backgroundColor = '#10b981';
+        newBtn.style.color = 'white';
+        newBtn.style.cursor = 'default';
+        
+        svg.style.transform = 'scale(0.8)';
+        svg.style.transition = 'transform 0.3s ease';
+        svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>';
+        setTimeout(() => { svg.style.transform = 'scale(1)'; }, 50);
+        
+        if (codeElement) {
+          const originalCodeBg = codeElement.style.backgroundColor;
+          codeElement.style.transition = 'background-color 0.4s ease, transform 0.2s ease';
+          codeElement.style.backgroundColor = '#dcfce7';
+          codeElement.style.transform = 'scale(1.02)';
+          setTimeout(() => { codeElement.style.transform = 'scale(1)'; }, 200);
+          setTimeout(() => {
+            codeElement.style.backgroundColor = originalCodeBg;
+          }, 1200);
+        }
+        
+        setTimeout(() => {
+          newBtn.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            textSpan.textContent = originalText;
+            newBtn.style.backgroundColor = originalBg;
+            newBtn.style.color = originalColor;
+            newBtn.style.cursor = 'pointer';
+            newBtn.style.transform = 'scale(1)';
+            svg.innerHTML = originalSvg;
+            svg.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              svg.style.transform = 'scale(1)';
+              newBtn.dataset.copying = 'false';
+            }, 150);
+          }, 100);
+        }, 2000);
+      } catch (err) {
+        console.error('Copy failed:', err);
+        const originalText = textSpan.textContent;
+        newBtn.style.animation = 'shake 0.5s ease';
+        textSpan.textContent = 'Failed';
+        newBtn.style.backgroundColor = '#ef4444';
+        newBtn.style.color = 'white';
+        setTimeout(() => {
+          newBtn.style.animation = '';
+          textSpan.textContent = originalText;
+          newBtn.style.backgroundColor = '#502792';
+          newBtn.style.color = 'white';
+          newBtn.dataset.copying = 'false';
+        }, 2000);
       }
     });
   }
