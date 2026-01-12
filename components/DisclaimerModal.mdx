@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 export default function DisclaimerModal() {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
     
     // Check if modal already exists
     if (document.getElementById('moony-disclaimer-modal')) {
@@ -15,6 +15,11 @@ export default function DisclaimerModal() {
     }
     
     function createModal() {
+      // Double check modal doesn't exist
+      if (document.getElementById('moony-disclaimer-modal')) {
+        return;
+      }
+      
       const isDark = checkDark();
       const bg = isDark ? '#1e293b' : 'white';
       const text = isDark ? '#e2e8f0' : '#1e293b';
@@ -78,40 +83,55 @@ export default function DisclaimerModal() {
         </div>
       `;
       
-      document.body.appendChild(modal);
-      
-      const btn = modal.querySelector('#disclaimer-understand-btn');
-      btn.addEventListener('click', function() {
-        modal.remove();
-      });
-      
-      const link = modal.querySelector('a[href="/disclaimer"]');
-      link.addEventListener('mouseenter', function() {
-        this.style.color = '#3d1f6f';
-        this.style.textDecoration = 'underline';
-      });
-      link.addEventListener('mouseleave', function() {
-        this.style.color = '#502792';
-        this.style.textDecoration = 'none';
-      });
-      
-      btn.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = '#3d1f6f';
-      });
-      btn.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = '#502792';
-      });
+      if (document.body) {
+        document.body.appendChild(modal);
+        
+        const btn = modal.querySelector('#disclaimer-understand-btn');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            modal.remove();
+          });
+          
+          btn.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#3d1f6f';
+          });
+          btn.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#502792';
+          });
+        }
+        
+        const link = modal.querySelector('a[href="/disclaimer"]');
+        if (link) {
+          link.addEventListener('mouseenter', function() {
+            this.style.color = '#3d1f6f';
+            this.style.textDecoration = 'underline';
+          });
+          link.addEventListener('mouseleave', function() {
+            this.style.color = '#502792';
+            this.style.textDecoration = 'none';
+          });
+        }
+      }
     }
     
-    // Wait for DOM to be ready
-    if (document.readyState === 'loading') {
+    // Try multiple approaches to ensure it runs
+    if (document.body) {
+      createModal();
+    } else if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', createModal);
     } else {
-      // Use setTimeout to ensure page content has rendered
       setTimeout(createModal, 100);
     }
     
+    // Also try after a short delay as fallback
+    const timeoutId = setTimeout(() => {
+      if (!document.getElementById('moony-disclaimer-modal') && document.body) {
+        createModal();
+      }
+    }, 500);
+    
     return () => {
+      clearTimeout(timeoutId);
       const modal = document.getElementById('moony-disclaimer-modal');
       if (modal) {
         modal.remove();
@@ -119,8 +139,8 @@ export default function DisclaimerModal() {
     };
   }, []);
 
-  // Return nothing - the modal is injected into the body
-  return null;
+  // Return a hidden element so React knows to render this component
+  return <div style={{ display: 'none' }} data-modal-injector="true" />;
 }
       <div
         style={{
