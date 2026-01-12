@@ -1,37 +1,32 @@
 /* Custom hover styles for navigation menu items */
 /* Use the light color (#E7D9FD) for hover in both light and dark modes */
 
-/* Navigation sidebar items hover */
-[data-testid="nav-item"]:hover,
-[data-testid="nav-item"]:hover a,
-nav a:hover,
+/* Navigation sidebar items hover - targeting Mintlify's navigation structure */
 aside a:hover,
-.sidebar a:hover,
-[class*="nav-item"]:hover,
-[class*="nav-item"]:hover a {
-  color: #E7D9FD !important;
-  transition: color 0.2s ease;
-}
-
-/* More specific selectors for Mintlify navigation */
-[class*="Navigation"] a:hover,
-[class*="NavigationItem"]:hover,
-[class*="NavigationItem"]:hover a,
-[class*="NavigationItem"]:hover span,
-[class*="NavigationItem"]:hover svg {
-  color: #E7D9FD !important;
-  transition: color 0.2s ease;
-}
-
-/* Target any navigation link in the sidebar */
 aside nav a:hover,
-aside [class*="nav"] a:hover,
-aside [class*="Nav"] a:hover {
+[class*="sidebar"] a:hover,
+[class*="Sidebar"] a:hover,
+[class*="Navigation"] a:hover,
+[class*="NavItem"]:hover,
+[class*="NavItem"]:hover a,
+[class*="NavItem"]:hover span,
+[class*="nav-item"]:hover,
+[class*="nav-item"]:hover a,
+nav[class*="nav"] a:hover {
   color: #E7D9FD !important;
   transition: color 0.2s ease;
 }
 
-/* Generic approach - target all links in navigation areas */
+/* Target navigation items with icons */
+aside a:hover svg,
+aside nav a:hover svg,
+[class*="NavItem"]:hover svg,
+[class*="nav-item"]:hover svg {
+  color: #E7D9FD !important;
+  transition: color 0.2s ease;
+}
+
+/* More generic fallback for any navigation links */
 nav a:hover,
 [role="navigation"] a:hover,
 [aria-label*="navigation" i] a:hover {
