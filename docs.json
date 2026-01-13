@@ -1,16 +1,20 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "theme": "maple",
-  "name": "Maple Starter Kit",
+  "name": "Moony Labs",
   "colors": {
     "primary": "#502792",
     "light": "#E7D9FD",
     "dark": "#502792"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
+  },
+  "banner": {
+    "content": "This documentation is confidential and subject to ongoing changes. Please do not share this information.",
+    "dismissible": true
   },
   "navigation": {
     "groups": [
