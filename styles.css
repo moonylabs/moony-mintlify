@@ -217,6 +217,15 @@ body:has([style*="z-index: 99999"]) footer {
   padding: 0 !important;
 }
 
+/* LaTeX formula color (KaTeX rendered math) */
+.formula-card > .formula-box .katex,
+.formula-card > .formula-box .katex-display,
+.formula-card > .formula-box .katex-display > .katex,
+.formula-card > .formula-box .katex .mathnormal,
+.formula-card > .formula-box .katex .mord {
+  color: #502792 !important;
+}
+
 .formula-card > .formula-explanation {
   font-size: 0.9375rem !important;
   line-height: 1.6 !important;
@@ -226,6 +235,7 @@ body:has([style*="z-index: 99999"]) footer {
 .formula-card {
   background-color: #ffffff !important;
   border: 1px solid #e5e7eb !important;
+  border-radius: 0.75rem !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 

@@ -75,8 +75,8 @@ icon: coins
 })();
 `}} />
 
-<div style={{ backgroundColor: '#E7D9FD', borderRadius: '1rem', padding: '0', overflow: 'hidden', marginBottom: '1.5rem' }}>
-  <img src="/images/pattern2.png" alt="Moony Pattern" style={{ borderRadius: '1rem', width: '100%' }} />
+<div style={{ backgroundColor: '#E7D9FD', borderRadius: '1rem', overflow: 'hidden', marginBottom: '1.5rem', position: 'relative', width: '100%', paddingBottom: '50%' }}>
+  <img src="/images/pattern2.png" alt="Moony Pattern" style={{ borderRadius: '1rem', width: '100%', height: '100%', display: 'block', objectFit: 'fill', position: 'absolute', top: 0, left: 0 }} />
 </div>
 
 <Info>
@@ -100,26 +100,30 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
   </div>
   <div style={{
     display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    flexWrap: 'wrap'
+    flexDirection: 'column',
+    gap: '0.75rem'
   }}>
-    <code className="address-code" style={{
-      flex: 1,
-      minWidth: '200px',
-      padding: '0.5rem 0.75rem',
-      backgroundColor: '#E7D9FD',
-      borderRadius: '0.5rem',
-      fontSize: '0.875rem',
-      fontFamily: 'monospace',
-      color: '#502792',
-      wordBreak: 'break-all',
-      border: '1px solid #D8C5FD'
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.75rem'
     }}>
-      52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj
-    </code>
-    <button
-      id="copy-mint-btn"
+      <code className="address-code" style={{
+        flex: 1,
+        maxWidth: '600px',
+        padding: '0.5rem 0.75rem',
+        backgroundColor: '#E7D9FD',
+        borderRadius: '0.5rem',
+        fontSize: '0.875rem',
+        fontFamily: 'monospace',
+        color: '#502792',
+        wordBreak: 'break-all',
+        border: '1px solid #D8C5FD'
+      }}>
+        52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj
+      </code>
+      <button
+        id="copy-mint-btn"
       data-address="52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj"
       onClick={(e) => {
         e.preventDefault();
@@ -237,6 +241,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
       </svg>
       <span>Copy</span>
     </button>
+    </div>
     <a
       href="https://explorer.solana.com/address/52MNGpgvydSwCtC2H4qeiZXZ1TxEuRVCRGa8LAfk2kSj"
       target="_blank"
@@ -253,7 +258,8 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         border: '1px solid #502792',
         borderRadius: '0.5rem',
         transition: 'all 0.2s ease',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        width: 'fit-content'
       }}
     >
       <span>Verify on Solana Explorer</span>
@@ -279,26 +285,30 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
   </div>
   <div style={{
     display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    flexWrap: 'wrap'
+    flexDirection: 'column',
+    gap: '0.75rem'
   }}>
-    <code className="address-code" style={{
-      flex: 1,
-      minWidth: '200px',
-      padding: '0.5rem 0.75rem',
-      backgroundColor: '#E7D9FD',
-      borderRadius: '0.5rem',
-      fontSize: '0.875rem',
-      fontFamily: 'monospace',
-      color: '#502792',
-      wordBreak: 'break-all',
-      border: '1px solid #D8C5FD'
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.75rem'
     }}>
-      jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV
-    </code>
-    <button
-      id="copy-authority-btn"
+      <code className="address-code" style={{
+        flex: 1,
+        maxWidth: '600px',
+        padding: '0.5rem 0.75rem',
+        backgroundColor: '#E7D9FD',
+        borderRadius: '0.5rem',
+        fontSize: '0.875rem',
+        fontFamily: 'monospace',
+        color: '#502792',
+        wordBreak: 'break-all',
+        border: '1px solid #D8C5FD'
+      }}>
+        jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV
+      </code>
+      <button
+        id="copy-authority-btn"
       data-address="jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV"
       onClick={(e) => {
         e.preventDefault();
@@ -416,6 +426,7 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
       </svg>
       <span>Copy</span>
     </button>
+    </div>
     <a
       href="https://explorer.solana.com/address/jfy1btcfsjSn2WCqLVaxiEjp4zgmemGyRsdCPbPwnZV"
       target="_blank"
@@ -432,7 +443,8 @@ Moony (MNY) is the native digital asset of the Moony protocol, implemented as a 
         border: '1px solid #502792',
         borderRadius: '0.5rem',
         transition: 'all 0.2s ease',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        width: 'fit-content'
       }}
     >
       <span>Verify on Solana Explorer</span>
@@ -452,7 +464,7 @@ Transactions with MNY do not require approval from centralized authorities and c
 ## Fixed Supply
 
 <div style={{ backgroundColor: '#E7D9FD', borderRadius: '1rem', padding: '0', overflow: 'hidden', marginBottom: '2rem' }}>
-  <img src="/images/pattern2.png" alt="Moony Pattern" style={{ borderRadius: '1rem', width: '100%' }} />
+  <img src="/images/pattern2.png" alt="Moony Pattern" style={{ borderRadius: '1rem', width: '100%', height: '100%', display: 'block', objectFit: 'fill' }} />
 </div>
 
 <p style={{ textAlign: 'justify', marginBottom: '3rem' }}>

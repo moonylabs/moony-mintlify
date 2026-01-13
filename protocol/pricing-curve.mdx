@@ -149,9 +149,9 @@ When a participant unlocks or redeems MNY, the Moony Reserve determines pricing 
   marginBottom: '1.5rem'
 }}>
   <div className="formula-box">
-    <code>
-      R'(S) = a × b × e^(c × S)
-    </code>
+    $$
+    R'(S) = a \times b \times e^{c \times S}
+    $$
   </div>
   <div className="formula-explanation">
     <p style={{ marginBottom: '0.75rem', marginTop: 0 }}>
@@ -277,3 +277,81 @@ The Moony Reserve defines the bonding curve using three fixed constants that tog
   </div>
 
 </div>
+
+## Cost Calculation
+
+<div style={{ textAlign: 'justify' }}>
+
+<p style={{ marginBottom: '1.5rem' }}>
+The mathematical formulas below define the continuous bonding curve from which the discrete lookup tables are generated. These formulas can be used to verify the precomputed values in the lookup tables or to compute prices analytically.
+</p>
+
+<p style={{ marginBottom: '1.5rem' }}>
+When unlocking or redeeming MNY through the Moony Reserve, pricing is not applied at a single fixed point. Instead, each transaction spans a range of circulating supply levels. The discrete implementation uses precomputed tables derived from integrating the spot price function over supply intervals. The formulas below show how these integrated values are calculated mathematically.
+</p>
+
+</div>
+
+<div className="principle-card formula-card" style={{
+  padding: '1.5rem',
+  marginBottom: '1.5rem'
+}}>
+  <div className="formula-box">
+    $$
+    Cost = (a \times b / c) \times (e^{c \times S_{new}} - e^{c \times S_{current}})
+    $$
+  </div>
+  <div className="formula-explanation">
+    <p style={{ marginBottom: '0.75rem', marginTop: 0 }}>
+      To buy tokens, you pay the integral of the spot price from your starting supply to your ending supply. This gives you the total USDF cost for the tokens you're purchasing:
+    </p>
+    <div style={{ marginTop: '0.75rem' }}>
+      <strong>Where:</strong>
+      <ul style={{ marginTop: '0.5rem', marginBottom: 0, paddingLeft: '1.5rem' }}>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_current</code> is the supply before your purchase
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_new</code> is <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_current + tokens_to_buy</code> (the supply after your purchase)
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          The formula integrates the spot price function over this range
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div className="principle-card formula-card" style={{
+  padding: '1.5rem',
+  marginBottom: '1.5rem'
+}}>
+  <div className="formula-box">
+    $$
+    Value = (a \times b / c) \times (e^{c \times S_{current}} - e^{c \times S_{new}})
+    $$
+  </div>
+  <div className="formula-explanation">
+    <p style={{ marginBottom: '0.75rem', marginTop: 0 }}>
+      When redeeming tokens, you receive USDF based on the integral of the spot price over the supply range you're removing. The calculation is the same as purchasing, but in reverse:
+    </p>
+    <div style={{ marginTop: '0.75rem' }}>
+      <strong>Where:</strong>
+      <ul style={{ marginTop: '0.5rem', marginBottom: 0, paddingLeft: '1.5rem' }}>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_current</code> is the supply before your redemption
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_new</code> is <code style={{ backgroundColor: 'transparent', padding: 0 }}>S_current - tokens_to_sell</code> (the supply after your redemption)
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          You receive USDF equal to the integral of the spot price over this range
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<Info>
+Note: Redemptions incur a 1% fee. The formula above shows the gross USDF value before the fee is applied. See the <a href="/protocol/proof-of-capital#fee-model" className="brand-link">Fee Model</a> section for details.
+</Info>
