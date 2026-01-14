@@ -434,44 +434,128 @@ section p {
   line-height: 1.7 !important;
 }
 
-/* Mobile: Reduce horizontal padding for more compact content */
-@media (max-width: 768px) {
-  main,
-  article,
-  section,
-  [class*="content"],
-  [class*="Content"],
-  [role="main"] {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-  }
-  
-  /* Target the main content container */
-  main > div,
-  article > div,
-  section > div,
-  [class*="container"] > div {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-  
-  /* Reduce padding on cards and containers, but preserve formula card padding */
-  .principle-card,
-  [class*="Card"]:not(.formula-card),
-  [class*="card"]:not(.formula-card) {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-  
-  /* Keep formula cards with original padding for proper math display */
-  .formula-card {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-  
-  /* Preserve formula box padding */
-  .formula-card > .formula-box {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
+/* Set text in Steps component to justified with optimizations */
+[class*="Steps"],
+[class*="steps"],
+[class*="Steps"] *,
+[class*="steps"] *,
+[class*="Step"],
+[class*="step"],
+[class*="Step"] *,
+[class*="step"] * {
+  text-align: justify !important;
+  /* Apply justified text optimizations */
+  word-spacing: -0.05em !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.7 !important;
+  text-rendering: optimizeLegibility !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  -moz-hyphens: auto !important;
 }
+
+/* Exceptions for Steps - keep headings and buttons left-aligned */
+[class*="Steps"] h1,
+[class*="steps"] h1,
+[class*="Steps"] h2,
+[class*="steps"] h2,
+[class*="Steps"] h3,
+[class*="steps"] h3,
+[class*="Steps"] h4,
+[class*="steps"] h4,
+[class*="Steps"] h5,
+[class*="steps"] h5,
+[class*="Steps"] h6,
+[class*="steps"] h6,
+[class*="Steps"] button,
+[class*="steps"] button,
+[class*="Step"] h1,
+[class*="step"] h1,
+[class*="Step"] h2,
+[class*="step"] h2,
+[class*="Step"] h3,
+[class*="step"] h3,
+[class*="Step"] button,
+[class*="step"] button {
+  text-align: left !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  line-height: inherit !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+}
+
+/* Set text in tip boxes (Info, Warning, Check, etc.) to justified with optimizations */
+[class*="Info"],
+[class*="info"],
+[class*="Warning"],
+[class*="warning"],
+[class*="Check"],
+[class*="check"],
+[class*="Tip"],
+[class*="tip"],
+[class*="Error"],
+[class*="error"],
+[class*="callout"],
+[class*="Callout"] {
+  text-align: justify !important;
+  /* Apply justified text optimizations */
+  word-spacing: -0.05em !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.7 !important;
+  text-rendering: optimizeLegibility !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+}
+
+[class*="Info"] *,
+[class*="info"] *,
+[class*="Warning"] *,
+[class*="warning"] *,
+[class*="Check"] *,
+[class*="check"] *,
+[class*="Tip"] *,
+[class*="tip"] *,
+[class*="Error"] *,
+[class*="error"] *,
+[class*="callout"] *,
+[class*="Callout"] * {
+  text-align: justify !important;
+  word-spacing: -0.05em !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.7 !important;
+}
+
+/* Exceptions for tip boxes - keep headings, buttons, and links left-aligned */
+[class*="Info"] h1,
+[class*="info"] h1,
+[class*="Info"] h2,
+[class*="info"] h2,
+[class*="Info"] h3,
+[class*="info"] h3,
+[class*="Info"] button,
+[class*="info"] button,
+[class*="Warning"] h1,
+[class*="warning"] h1,
+[class*="Warning"] h2,
+[class*="warning"] h2,
+[class*="Warning"] button,
+[class*="warning"] button,
+[class*="Check"] h1,
+[class*="check"] h1,
+[class*="Check"] h2,
+[class*="check"] h2,
+[class*="Check"] button,
+[class*="check"] button {
+  text-align: left !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  line-height: inherit !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+}
+
+
