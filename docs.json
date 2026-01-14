@@ -49,8 +49,7 @@
         "pages": [
           "network/overview",
           "network/stakeholders",
-          "network/participation",
-          "network/resources"
+          "network/participation"
         ]
       }
     ],
@@ -80,7 +79,37 @@
     "copyright": "© 2026 Moony Labs, LLC.",
     "links": [
       {
-        "label": "Legal",
+        "label": "Get Started",
+        "items": [
+          {
+            "label": "Welcome",
+            "href": "/welcome"
+          },
+          {
+            "label": "Quick Start",
+            "href": "/quickstart"
+          }
+        ]
+      },
+      {
+        "label": "Documentation",
+        "items": [
+          {
+            "label": "Moony Protocol",
+            "href": "/protocol/overview"
+          },
+          {
+            "label": "Moony Economy",
+            "href": "/economy/overview"
+          },
+          {
+            "label": "Moony Network",
+            "href": "/network/overview"
+          }
+        ]
+      },
+      {
+        "label": "Resources",
         "items": [
           {
             "label": "Disclaimer",
@@ -89,6 +118,10 @@
           {
             "label": "Licensing",
             "href": "/licensing"
+          },
+          {
+            "label": "Branding",
+            "href": "/branding"
           }
         ]
       }
