@@ -88,6 +88,10 @@
           {
             "label": "Quick Start",
             "href": "/quickstart"
+          },
+          {
+            "label": "Branding",
+            "href": "/branding"
           }
         ]
       },
@@ -120,8 +124,8 @@
             "href": "/licensing"
           },
           {
-            "label": "Branding",
-            "href": "/branding"
+            "label": "Privacy",
+            "href": "/privacy"
           }
         ]
       }
