@@ -399,4 +399,37 @@ h1[data-icon="code"]::before {
   filter: brightness(0) saturate(100%) invert(89%) sepia(12%) saturate(1352%) hue-rotate(230deg) brightness(102%) contrast(95%);
 }
 
+/* Optimize justified text to reduce word spacing - all screen sizes */
+/* Target elements with justified text */
+div[style*="textAlign"],
+div[style*="text-align"],
+p[style*="textAlign"],
+p[style*="text-align"],
+[style*="justify"] {
+  /* Slightly increase font size to reduce word spacing */
+  font-size: 1.05em !important;
+  /* Reduce word spacing */
+  word-spacing: -0.05em !important;
+  /* Slightly adjust letter spacing */
+  letter-spacing: 0.01em !important;
+  /* Optimize line height for better flow */
+  line-height: 1.7 !important;
+  /* Adjust text rendering */
+  text-rendering: optimizeLegibility !important;
+  /* Hyphenation can help with justified text */
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+}
 
+/* Also target main content areas */
+main div,
+main p,
+article div,
+article p,
+section div,
+section p {
+  word-spacing: -0.05em !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.7 !important;
+}
