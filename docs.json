@@ -49,7 +49,8 @@
         "pages": [
           "network/overview",
           "network/stakeholders",
-          "network/participation"
+          "network/incentives",
+          "network/coordination"
         ]
       }
     ],
