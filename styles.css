@@ -564,39 +564,59 @@ footer [class*="links"] > div > h4 {
     box-sizing: border-box !important;
   }
   
-  /* Use display: contents on inner div to make code and button direct children */
+  /* Inner div with code: make it column layout (code full width, button below) */
   .address-card > div[style*="flexDirection"]:has(code) > div:has(code),
   #mint-address-card > div[style*="flexDirection"]:has(code) > div:has(code),
   #authority-address-card > div[style*="flexDirection"]:has(code) > div:has(code),
   #reserve-address-card > div[style*="flexDirection"]:has(code) > div:has(code),
   #usdf-vault-card > div[style*="flexDirection"]:has(code) > div:has(code),
   #moony-vault-card > div[style*="flexDirection"]:has(code) > div:has(code) {
-    display: contents !important; /* Makes code and button direct children */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    grid-row: 1 !important;
   }
   
-  /* Now code, button, and verify are all direct children - position with grid */
-  /* Code in row 1 */
+  /* Code in row 1, full width */
   .address-code,
   #mint-address-card code,
   #authority-address-card code,
   #reserve-address-card code,
   #usdf-vault-card code,
   #moony-vault-card code {
-    grid-row: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
   }
   
-  /* Button and verify in row 2, side by side using flex */
-  .address-card > div[style*="flexDirection"]:has(code) > button,
-  #mint-address-card > div[style*="flexDirection"]:has(code) > button,
-  #authority-address-card > div[style*="flexDirection"]:has(code) > button,
-  #reserve-address-card > div[style*="flexDirection"]:has(code) > button,
-  #usdf-vault-card > div[style*="flexDirection"]:has(code) > button,
-  #moony-vault-card > div[style*="flexDirection"]:has(code) > button {
+  /* Button inside the inner div - should be below code now */
+  .address-card > div[style*="flexDirection"]:has(code) > div:has(code) > button,
+  #mint-address-card > div[style*="flexDirection"]:has(code) > div:has(code) > button,
+  #authority-address-card > div[style*="flexDirection"]:has(code) > div:has(code) > button,
+  #reserve-address-card > div[style*="flexDirection"]:has(code) > div:has(code) > button,
+  #usdf-vault-card > div[style*="flexDirection"]:has(code) > div:has(code) > button,
+  #moony-vault-card > div[style*="flexDirection"]:has(code) > div:has(code) > button {
+    align-self: flex-start !important;
+    width: fit-content !important;
+  }
+  
+  /* Row 2: Create a flex row container for button and verify link */
+  /* Use the button div wrapper and verify link to create a row */
+  .address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)),
+  #mint-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)),
+  #authority-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)),
+  #reserve-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)),
+  #usdf-vault-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)),
+  #moony-vault-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) {
     grid-row: 2 !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
   }
   
+  /* Verify link in row 2, positioned next to button */
   .address-card > div[style*="flexDirection"]:has(code) > a[href*="explorer.solana.com"],
   #mint-address-card > div[style*="flexDirection"]:has(code) > a[href*="explorer.solana.com"],
   #authority-address-card > div[style*="flexDirection"]:has(code) > a[href*="explorer.solana.com"],
@@ -604,9 +624,23 @@ footer [class*="links"] > div > h4 {
   #usdf-vault-card > div[style*="flexDirection"]:has(code) > a[href*="explorer.solana.com"],
   #moony-vault-card > div[style*="flexDirection"]:has(code) > a[href*="explorer.solana.com"] {
     grid-row: 2 !important;
+    margin-top: 0 !important;
+    align-self: center !important;
+  }
+  
+  /* Move verify link into the button div's flex container using positioning */
+  /* Since verify is a sibling, we need to visually place it in the button div */
+  /* Use negative margin to pull it into the same visual row */
+  .address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"],
+  #mint-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"],
+  #authority-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"],
+  #reserve-address-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"],
+  #usdf-vault-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"],
+  #moony-vault-card > div[style*="flexDirection"]:has(code) > div:has(button):not(:has(code)) ~ a[href*="explorer.solana.com"] {
+    margin-top: 0 !important;
+    margin-left: 0.5rem !important;
     display: inline-block !important;
     vertical-align: middle !important;
-    margin-left: 0.5rem !important;
   }
 }
 
