@@ -536,5 +536,23 @@ footer [class*="links"] > div > h4 {
   justify-content: center !important;
 }
 
+/* Hide empty three-dot menu on mobile */
+/* The three-dot menu in Mintlify typically appears in the top right when there are navbar links, */
+/* language switchers, or version switchers. If it's empty, we hide it. */
+@media (max-width: 768px) {
+  /* Hide the three-dot menu button - target common Mintlify patterns */
+  /* Be specific to avoid hiding sidebar toggle or theme toggle */
+  [class*="NavBar"] button[aria-label*="more" i],
+  [class*="NavBar"] button[aria-label*="options" i],
+  nav [class*="MoreButton"],
+  nav [class*="MenuButton"]:not([aria-label*="sidebar" i]):not([aria-label*="hamburger" i]),
+  /* If the menu dropdown is empty when opened, the button should be hidden */
+  button + [class*="Menu"][style*="display: none"],
+  button[aria-expanded="false"] + [class*="Menu"]:empty {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
 
 
