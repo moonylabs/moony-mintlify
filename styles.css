@@ -562,6 +562,39 @@ footer [class*="links"] > div > h4 {
   justify-content: center !important;
 }
 
+/* Callout styling - use brand purple instead of default blue */
+[class*="Note"],
+[class*="Info"],
+[class*="Check"],
+[class*="Tip"],
+[class*="Warning"] {
+  background-color: #F3ECFD !important;
+  border-color: #E7D9FD !important;
+}
+
+[class*="Note"] svg,
+[class*="Info"] svg,
+[class*="Check"] svg,
+[class*="Tip"] svg {
+  color: #502792 !important;
+}
+
+.dark [class*="Note"],
+.dark [class*="Info"],
+.dark [class*="Check"],
+.dark [class*="Tip"],
+.dark [class*="Warning"] {
+  background-color: rgba(80, 39, 146, 0.15) !important;
+  border-color: #502792 !important;
+}
+
+.dark [class*="Note"] svg,
+.dark [class*="Info"] svg,
+.dark [class*="Check"] svg,
+.dark [class*="Tip"] svg {
+  color: #E7D9FD !important;
+}
+
 /* Hide empty three-dot menu on mobile */
 /* The three-dot menu in Mintlify typically appears in the top right when there are navbar links, */
 /* language switchers, or version switchers. If it's empty, we hide it. */
