@@ -562,37 +562,6 @@ footer [class*="links"] > div > h4 {
   justify-content: center !important;
 }
 
-/* Quick Start page - callouts with brand purple */
-.quickstart-page [class*="Note"],
-.quickstart-page [class*="Info"],
-.quickstart-page [class*="Check"],
-.quickstart-page [class*="Tip"] {
-  background-color: #F3ECFD !important;
-  border-color: #E7D9FD !important;
-}
-
-.quickstart-page [class*="Note"] svg,
-.quickstart-page [class*="Info"] svg,
-.quickstart-page [class*="Check"] svg,
-.quickstart-page [class*="Tip"] svg {
-  color: #502792 !important;
-}
-
-.dark .quickstart-page [class*="Note"],
-.dark .quickstart-page [class*="Info"],
-.dark .quickstart-page [class*="Check"],
-.dark .quickstart-page [class*="Tip"] {
-  background-color: rgba(80, 39, 146, 0.15) !important;
-  border-color: #502792 !important;
-}
-
-.dark .quickstart-page [class*="Note"] svg,
-.dark .quickstart-page [class*="Info"] svg,
-.dark .quickstart-page [class*="Check"] svg,
-.dark .quickstart-page [class*="Tip"] svg {
-  color: #E7D9FD !important;
-}
-
 /* Hide empty three-dot menu on mobile */
 /* The three-dot menu in Mintlify typically appears in the top right when there are navbar links, */
 /* language switchers, or version switchers. If it's empty, we hide it. */
